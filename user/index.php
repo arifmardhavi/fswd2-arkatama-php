@@ -1,58 +1,100 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Data Mahasiswa</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-</head>
-<body>
-    <div class="container-fluid">
-    <a href="create.php" class="btn btn-primary mt-3 mb-3">Tambah</a>
-        <table class="table">
-            <thead>
-                <tr class="table-primary">
-                    <th scope="col">ID</th>
-                    <th scope="col">Aksi</th>
-                    <th scope="col">Avatar</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Role</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                 include 'koneksi.php';
-                // Query untuk membaca data dari tabel
-                $sql = "SELECT * FROM users";
-                $result = $conn->query($sql);
-                
-                // Memeriksa apakah ada data yang ditemukan
-                if ($result->num_rows > 0) {
-                    // Menampilkan data
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td scope='row'>" . $row["id"] . "</td>";
-                        echo "<td>";
-                        echo "<div class='btn-group' role='group' aria-label='Basic mixed styles example'>";
-                        echo "<a class='btn btn-primary' href='detail.php?id=" . $row["id"] . "'>Detail</a> ";
-                        echo "<a class='btn btn-warning' href='edit.php?id=" . $row["id"] . "'>Edit</a> ";
-                        echo "<a class='btn btn-danger' href='delete.php?id=" . $row["id"] . "'>Hapus</a>";
-                        echo "</div>";
-                        echo "</td>";
-                        echo "<td><img src=\"avatar/{$row['avatar']}\" width='100em' class='rounded-circle'></td>";
-                        echo "<td>" . $row["name"] . "</td>";
-                        echo "<td>" . $row["email"] . "</td>";
-                        echo "<td>" . $row["phone"] . "</td>";
-                        echo "<td>" . $row["role"] . "</td>";
-                        echo "</tr>";
-                    }
-                }
-                ?>
-            </tbody>
-        </table>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Signin Template · Bootstrap v5.1</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+
+      .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+      }
+
+      .form-signin .checkbox {
+        font-weight: 400;
+      }
+
+      .form-signin .form-floating:focus-within {
+        z-index: 2;
+      }
+
+      .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    
+<main class="form-signin">
+  <form action="proses.php" method="post">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+      <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Email address</label>
     </div>
-</body>
+    <div class="form-floating">
+      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+  </form>
+</main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
 </html>

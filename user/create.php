@@ -1,6 +1,14 @@
 <?php
 include 'koneksi.php';
 
+session_start();
+
+// Pengecekan sesi
+if (!isset($_SESSION['isLoggedIn'])) {
+    header("Location: index.php");
+    exit();
+} 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST["name"];
     $email = $_POST["email"];
